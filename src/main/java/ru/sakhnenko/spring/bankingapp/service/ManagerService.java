@@ -7,11 +7,11 @@ import java.util.List;
 public interface ManagerService {
     List<Manager> getAllManagers();
 
-//    public void saveManager(Manager manager);
+//    void saveManager(Manager manager);
 
     Manager getManager(int id);
 
     int getFreestManagerId();
 
-//    public void deleteManager(int id);
+//    void deleteManager(int id);
 }

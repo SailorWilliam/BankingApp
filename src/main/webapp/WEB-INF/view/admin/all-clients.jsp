@@ -13,7 +13,7 @@
 <h2>Список клиентов:</h2>
 <br>
 
-<table border="1">
+<table class="table table-striped table-hover" border="1">
     <tr>
         <th>ID</th>
         <th>Surname</th>
@@ -51,9 +51,9 @@
                        onclick="window.location.href = '/admin/clients/${client.id}'"/>
             </td>
             <td>
-                <form action="/admin/clients/${client.id}" method="post">
-                <input type="submit" value="Delete"/>
-                </form>
+                <form:form action = "/admin/clients/${client.id}" method="delete">
+                    <input type="submit" value="Delete"/>
+                </form:form>
             </td>
         </tr>
 

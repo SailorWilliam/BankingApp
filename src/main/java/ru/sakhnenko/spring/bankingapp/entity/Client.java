@@ -105,6 +105,10 @@ public class Client implements UserDetails {
         operation.setClient(this);
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public int getId() {
         return id;
     }

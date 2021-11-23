@@ -42,27 +42,36 @@ public class AdminController {
         return "admin/all-managers";
     }
 
-    @PostMapping("/clients/{id}")
+    @DeleteMapping("/clients/{id}")
     public String deleteClient(@PathVariable int id) {
         clientService.deleteClient(id);
         return "redirect:/admin/clients";
     }
 
-//    @GetMapping("/clients/{id}")
-//    public String editClient(@PathVariable int id, Model model) {
-//        model.addAttribute("client", clientService.getClient(id));
-//        return "admin/edit-client";
-//    }
-//
-//    @PatchMapping ("/clients/{id}")
-//    public String updateClient(@ModelAttribute("client") @Valid Client client,
-//                         BindingResult bindingResult, @PathVariable int id) {
-//        if (bindingResult.hasErrors()) {
-//            return "admin/edit-client";
-//        }
-//        client.setPassword(bCryptPasswordEncoder.encode(client.getPassword()));
-//        clientService.saveClient(client);
-//        return "redirect:/admin/edit-client";
-//    }
+    @GetMapping("/clients/{id}")
+    public String editClient(@PathVariable int id, Model model) {
+        model.addAttribute("client", clientService.getClient(id));
+        return "admin/edit-client";
+    }
+
+    @PutMapping ("/clients/{id}")
+    public String updateClient(@ModelAttribute("client") @Valid Client client,
+                         BindingResult bindingResult, @PathVariable int id ) {
+        if (bindingResult.hasErrors()) {
+            return "admin/edit-client";
+        }
+
+        Client clientFromDB = clientService.getClient(id);
+
+        client.setCardNumber(clientFromDB.getCardNumber());
+        client.setPin(clientFromDB.getPin());
+        client.setBalance(clientFromDB.getBalance());
+        client.setActive(clientFromDB.isActive());
+        client.setManager(clientFromDB.getManager());
+        client.setRoles(clientFromDB.getRoles());
+
+        clientService.editClient(client);
+        return "redirect:/admin/clients";
+    }
 }
 

@@ -7,7 +7,7 @@
 </head>
 <body>
 
-<h2>Main page</h2>
+<h2>Добро пожаловать!</h2>
 <br><br>
 
 <input type="button" value="Стать клиентом банка"

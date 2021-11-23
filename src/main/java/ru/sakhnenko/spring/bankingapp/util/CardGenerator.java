@@ -44,4 +44,24 @@ public class CardGenerator {
         int nmb = rnd.nextInt(10000);
         return (String.format("%04d", nmb));
     }
+
+    public static boolean isLuhnAlg(String num)
+    {
+        int sum = getNumberSum(num);
+        int lastNum = num.charAt(num.length() - 1)  - '0';
+        sum -= lastNum;
+        if (sum % 10 == 0) {
+            if (lastNum == 0) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            if (10 - sum % 10 == lastNum) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+    }
 }

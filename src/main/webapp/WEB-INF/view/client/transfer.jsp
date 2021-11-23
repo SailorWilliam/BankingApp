@@ -16,11 +16,9 @@
 <form action="/client/transfer/" method="post" >
     Номер карты получателя: <input name="cardNumber"/>
     ${cardNumberError}
-    ${sameCardError}
     <br><br>
     Сумма перевода: <input name="sum"/>
     ${sumError}
-    ${negativeSumError}
     <br><br>
     <input type="submit" value="Перевести" />
 </form>

@@ -10,8 +10,8 @@ import ru.sakhnenko.spring.bankingapp.entity.Client;
 import ru.sakhnenko.spring.bankingapp.entity.Operation;
 import ru.sakhnenko.spring.bankingapp.enums.OperationType;
 import ru.sakhnenko.spring.bankingapp.service.ClientService;
-import ru.sakhnenko.spring.bankingapp.service.ManagerService;
 import ru.sakhnenko.spring.bankingapp.service.OperationService;
+import ru.sakhnenko.spring.bankingapp.util.CardGenerator;
 
 import java.util.Date;
 
@@ -23,9 +23,6 @@ public class ClientController {
     private ClientService clientService;
 
     @Autowired
-    private ManagerService managerService;
-
-    @Autowired
     private OperationService operationService;
 
     @GetMapping("/")
@@ -35,9 +32,11 @@ public class ClientController {
         return "client/client-info";
     }
 
-    @GetMapping("/managers/{id}")
-    public String getManagerInfo(@PathVariable int id, Model model) {
-        model.addAttribute("manager", managerService.getManager(id));
+    @GetMapping("/manager")
+    public String getManagerInfo(Model model) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        Client client =  clientService.getClientByUsername(auth.getName());
+        model.addAttribute("manager", client.getManager());
         return "client/manager-info";
     }
 
@@ -74,15 +73,16 @@ public class ClientController {
         Client clientSender = clientService.getClientByUsername(auth.getName());
 
         if (clientSender.getCardNumber().equals(cardNumber)) {
-            model.addAttribute("sameCardError", "Вы не можете перевести средства на свою карту");
+            model.addAttribute("cardNumberError", "Вы не можете перевести средства на собственную карту");
             return "client/transfer";
-        }
-        if (sum < 1) {
-            model.addAttribute("negativeSumError", "Сумма должна быть больше 0");
+        } else if (sum < 1) {
+            model.addAttribute("sumError", "Сумма должна быть больше 0");
             return "client/transfer";
-        }
-        if (sum > clientSender.getBalance()) {
+        } else if (sum > clientSender.getBalance()) {
             model.addAttribute("sumError", "Недостаточно средств");
+            return "client/transfer";
+        } else if (!CardGenerator.isLuhnAlg(cardNumber)) {
+            model.addAttribute("cardNumberError", "Неверно указан номер карты");
             return "client/transfer";
         }
 

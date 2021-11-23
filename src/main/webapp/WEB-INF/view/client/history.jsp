@@ -12,7 +12,7 @@
 <h2>Ваши операции</h2>
 <br>
 
-<table border="1">
+<table class="table table-striped table-hover" border="1">
     <tr>
         <th>Дата операции</th>
         <th>Тип операции</th>

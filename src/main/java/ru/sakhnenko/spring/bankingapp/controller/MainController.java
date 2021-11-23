@@ -49,7 +49,7 @@ public class MainController {
     }
 
     @PostMapping("/registration")
-    public String addNewClient(@Valid @ModelAttribute("clientForm") Client clientForm,
+    public String addNewClient(@ModelAttribute("clientForm") @Valid Client clientForm,
                                BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             return "registration";

@@ -12,7 +12,7 @@
 <h2>Список менеджеров:</h2>
 <br>
 
-<table border="1">
+<table class="table table-striped table-hover" border="1">
     <tr>
         <th>ID</th>
         <th>Surname</th>
@@ -26,14 +26,6 @@
 
     <c:forEach var="manager" items="${allManagers}">
 
-<%--        <c:url var="updateButton" value="/updateInfo">--%>
-<%--            <c:param name="clientId" value="${client.id}"/>--%>
-<%--        </c:url>--%>
-
-<%--        <c:url var="deleteButton" value="/deleteEmployee">--%>
-<%--            <c:param name="clientId" value="${client.id}"/>--%>
-<%--        </c:url>--%>
-
         <tr>
             <td>${manager.id}</td>
             <td>${manager.surname}</td>
@@ -43,13 +35,7 @@
             <td>${manager.phoneNumber}</td>
             <td>${manager.username}</td>
             <td>${manager.password}</td>
-<%--            <td>--%>
-<%--                <input type="button" value="Update"--%>
-<%--                    onclick="window.location.href = '${updateButton}'"/>--%>
 
-<%--                <input type="button" value="Delete"--%>
-<%--                       onclick="window.location.href = '${deleteButton}'"/>--%>
-<%--            </td>--%>
         </tr>
 
     </c:forEach>

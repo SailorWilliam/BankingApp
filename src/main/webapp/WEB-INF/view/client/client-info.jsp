@@ -14,23 +14,29 @@
 <br>
 
 <h3>Ваш баланс ${client.balance}</h3>
-<br><br>
+<br>
+<br>
 
 <input type="button" value="Пополнить счет"
        onclick="window.location.href = '/client/replenishment/'">
-<br><br>
+<br>
+<br>
 <input type="button" value="Перевод клиенту банка"
        onclick="window.location.href = '/client/transfer/'">
-<br><br>
+<br>
+<br>
 <input type="button" value="История операций"
        onclick="window.location.href = '/client/history/'">
 
-<br><br>
+<br>
+<br>
 
-<h3>Ваш персональный менеджер <a href="/client/managers/${client.manager.getId()}">${client.manager}</a></h3>
+<h3>Ваш персональный менеджер <a href="/client/manager/">${client.manager}</a></h3>
 
-<br><br>
-<br><br>
+<br>
+<br>
+<br>
+<br>
 <input type="button" value="Log out"
        onclick="window.location.href = '/logout'">
 
