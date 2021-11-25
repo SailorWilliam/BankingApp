@@ -54,7 +54,7 @@ public class ClientController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Client client = clientService.getClientByUsername(auth.getName());
         client.setBalance(client.getBalance() + sum);
-        Operation operation = new Operation(new Date().toString(), OperationType.REPLENISHMENT, sum);
+        Operation operation = new Operation(new Date().toString(), OperationType.REPLENISHMENT.getTranslation(), sum);
         client.addOperation(operation);
         clientService.editClient(client);
 
@@ -94,11 +94,11 @@ public class ClientController {
         }
 
         clientSender.setBalance(clientSender.getBalance() - sum);
-        clientSender.addOperation(new Operation(new Date().toString(), OperationType.TRANSFER, sum));
+        clientSender.addOperation(new Operation(new Date().toString(), OperationType.TRANSFER.getTranslation(), sum));
         clientService.editClient(clientSender);
 
         clientRecipient.setBalance(clientRecipient.getBalance() + sum);
-        clientRecipient.addOperation(new Operation(new Date().toString(), OperationType.RECEIPT, sum));
+        clientRecipient.addOperation(new Operation(new Date().toString(), OperationType.RECEIPT.getTranslation(), sum));
         clientService.editClient(clientRecipient);
 
         return "redirect:/client/";

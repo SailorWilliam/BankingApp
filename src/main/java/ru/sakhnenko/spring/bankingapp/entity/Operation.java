@@ -16,8 +16,7 @@ public class Operation {
     private String time;
 
     @Column(name = "type")
-    @Enumerated(EnumType.STRING)
-    private OperationType type;
+    private String type;
 
     @Column(name = "sum")
     private int sum;
@@ -29,7 +28,7 @@ public class Operation {
     public Operation() {
     }
 
-    public Operation(String time, OperationType type, int sum) {
+    public Operation(String time, String type, int sum) {
         this.time = time;
         this.type = type;
         this.sum = sum;
@@ -47,11 +46,11 @@ public class Operation {
         this.time = time;
     }
 
-    public OperationType getType() {
+    public String getType() {
         return type;
     }
 
-    public void setType(OperationType type) {
+    public void setType(String type) {
         this.type = type;
     }
 
