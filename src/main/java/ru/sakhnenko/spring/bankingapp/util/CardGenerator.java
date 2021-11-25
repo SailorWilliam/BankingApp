@@ -47,21 +47,15 @@ public class CardGenerator {
 
     public static boolean isLuhnAlg(String num)
     {
+        boolean result;
         int sum = getNumberSum(num);
         int lastNum = num.charAt(num.length() - 1)  - '0';
         sum -= lastNum;
         if (sum % 10 == 0) {
-            if (lastNum == 0) {
-                return true;
-            } else {
-                return false;
-            }
+            result = (lastNum == 0) ? true : false;
         } else {
-            if (10 - sum % 10 == lastNum) {
-                return true;
-            } else {
-                return false;
-            }
+            result = (10 - sum % 10 == lastNum) ? true : false;
         }
+        return  result;
     }
 }
