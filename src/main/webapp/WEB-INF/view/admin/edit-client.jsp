@@ -41,7 +41,7 @@
     ${usernameError}
     <br>
     <br>
-    Пароль <form:input path="password" field="${client.password}"/>
+    Пароль <form:input type="password" path="password" field="${client.password}"/>
     <form:errors path="password"/>
     <br>
     <br>
